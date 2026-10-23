@@ -1,3 +1,4 @@
+SET SESSION sql_require_primary_key = 0;
 CREATE DATABASE IF NOT EXISTS `campus_event_hub` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `campus_event_hub`;
 
