@@ -1,21 +1,27 @@
 <?php
 
-$host = "localhost";
-$dbname = "campus_event_hub";
-$username = "root";
-$password = "";
+
+$host = getenv('DB_HOST') ?: 'localhost';
+$db   = getenv('DB_NAME') ?: 'campus_event_hub';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: '';
+$port = getenv('DB_PORT') ?: '3306';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
 try {
-    $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
-        $username,
-        $password
-    );
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+   
+    error_log($e->getMessage());
+    
+   
+    die("Database connection failed. Please check server configurations.");
 }
 ?>
