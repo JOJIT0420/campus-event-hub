@@ -1,6 +1,6 @@
 <?php
 
-$host    = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? 'mysql-2e5f343c-pateros-technological-college-4e52.aivencloud.com');
+$host    = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? 'mysql-2e5f343c-paterostechnologicalcollege-4e52.b.aivencloud.com');
 $port    = getenv('DB_PORT') ?: ($_ENV['DB_PORT'] ?? '21353');
 $db      = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? 'campus_event_hub');
 $user    = getenv('DB_USER') ?: ($_ENV['DB_USER'] ?? 'avnadmin');
