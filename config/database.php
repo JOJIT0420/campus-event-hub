@@ -1,16 +1,13 @@
 <?php
 
-$host    = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? $_SERVER['DB_HOST'] ?? 'mysql-2e5f343c-pateros-technological-college-4e52.aivencloud.com');
+// Paste the exact Host string copied from your Aiven dashboard below:
+$host    = 'mysql-2e5f343c-pateros-technological-college-4e52.aivencloud.com'; // <-- REPLACE THIS ENTIRE STRING WITH YOUR COPIED AIVEN HOST
+
 $port    = getenv('DB_PORT') ?: ($_ENV['DB_PORT'] ?? $_SERVER['DB_PORT'] ?? '21353');
 $db      = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? $_SERVER['DB_NAME'] ?? 'campus_event_hub');
 $user    = getenv('DB_USER') ?: ($_ENV['DB_USER'] ?? $_SERVER['DB_USER'] ?? 'avnadmin');
 $pass    = getenv('DB_PASS') ?: ($_ENV['DB_PASS'] ?? $_SERVER['DB_PASS'] ?? '');
 $charset = 'utf8mb4';
-
-// If host still contains the unhyphenated typo, force the correct domain
-if (strpos($host, 'paterostechnologicalcollege') !== false) {
-    $host = 'mysql-2e5f343c-pateros-technological-college-4e52.aivencloud.com';
-}
 
 $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
 $options = [
