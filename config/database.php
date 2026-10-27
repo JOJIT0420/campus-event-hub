@@ -1,10 +1,8 @@
 <?php
 
-// Paste the exact Host string copied from your Aiven dashboard below:
-$host    = 'mysql-2e5f343c-pateros-technological-college-4e52.aivencloud.com'; // <-- REPLACE THIS ENTIRE STRING WITH YOUR COPIED AIVEN HOST
-
+$host    = getenv('DB_HOST') ?: ($_ENV['DB_HOST'] ?? $_SERVER['DB_HOST'] ?? 'mysql-2e5f343c-paterostechnologicalcollege-4e52.b.aivencloud.com');
 $port    = getenv('DB_PORT') ?: ($_ENV['DB_PORT'] ?? $_SERVER['DB_PORT'] ?? '21353');
-$db      = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? $_SERVER['DB_NAME'] ?? 'campus_event_hub');
+$db      = getenv('DB_NAME') ?: ($_ENV['DB_NAME'] ?? $_SERVER['DB_NAME'] ?? 'defaultdb');
 $user    = getenv('DB_USER') ?: ($_ENV['DB_USER'] ?? $_SERVER['DB_USER'] ?? 'avnadmin');
 $pass    = getenv('DB_PASS') ?: ($_ENV['DB_PASS'] ?? $_SERVER['DB_PASS'] ?? '');
 $charset = 'utf8mb4';
@@ -21,8 +19,7 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    echo "<h3>Database Connection Error:</h3>";
-    echo "<p>" . $e->getMessage() . "</p>";
-    die();
+    error_log("Database connection error: " . $e->getMessage());
+    die("Database connection failed. Please check server configurations.");
 }
 ?>
