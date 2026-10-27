@@ -19,7 +19,8 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    die("Database connection failed. Please check server configurations.");
+    echo "<h3>Database Connection Error:</h3>";
+    echo "<p>" . $e->getMessage() . "</p>";
+    die();
 }
 ?>
